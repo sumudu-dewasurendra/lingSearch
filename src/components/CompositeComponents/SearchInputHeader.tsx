@@ -5,10 +5,11 @@ import Button from '../Button';
 
 const styles = StyleSheet.create({
   searchInputHeader: {
+    width: 350,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 10,
+    justifyContent: 'space-between',
+    marginBottom: 20,
   },
 });
 
@@ -17,6 +18,8 @@ type SearchInputHeaderProps = {
   onChangeSearchText: (text: string) => void;
   searchButtonLabel: string;
   onPresSearchButton: () => void;
+  searchButtonWidth?: number;
+  searchButtonHeight?: number;
 };
 
 const SearchInputHeader = ({
@@ -24,6 +27,8 @@ const SearchInputHeader = ({
   onChangeSearchText,
   searchButtonLabel,
   onPresSearchButton,
+  searchButtonWidth,
+  searchButtonHeight,
 }: SearchInputHeaderProps) => {
   return (
     <View style={styles.searchInputHeader}>
@@ -31,7 +36,12 @@ const SearchInputHeader = ({
         searchText={searchText}
         onChangeSearchText={onChangeSearchText}
       />
-      <Button label={searchButtonLabel} onPressButton={onPresSearchButton} />
+      <Button
+        label={searchButtonLabel}
+        onPressButton={onPresSearchButton}
+        width={searchButtonWidth}
+        height={searchButtonHeight}
+      />
     </View>
   );
 };

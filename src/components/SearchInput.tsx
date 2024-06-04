@@ -4,7 +4,7 @@ import {COLORS} from '../theme/colors';
 
 const styles = StyleSheet.create({
   mainWrapper: {
-    width: '100%',
+    width: '70%',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',

@@ -1,18 +1,15 @@
 import {SET_FILTER, SET_DATA, SEARCH_USER} from './actions';
-import leaderBoardData from '../data/leaderboard.json';
 import {LeaderBoardUser} from '../types/commonTypes';
+import {Alert} from 'react-native';
 
 type ActionProps = {
   type: string;
   payload: any;
 };
 
-const data = Object.values(leaderBoardData);
-const initialData = data.filter((user: LeaderBoardUser) => user.name !== '');
-
 const initialState = {
-  data: initialData,
-  filteredData: initialData,
+  data: [] as LeaderBoardUser[],
+  filteredData: [] as LeaderBoardUser[],
   filter: '',
 };
 
@@ -28,43 +25,67 @@ const rootReducer = (state = initialState, action: ActionProps) => {
         filteredData: filteredData,
       };
     case SET_DATA:
+      const dataArray: LeaderBoardUser[] = Object.values(action.payload);
+
+      // Remove name = '' users from array, sort the data by bananas and last day played and add the rank to each user
+      const initialData = dataArray
+        .filter((user: LeaderBoardUser) => user.name !== '')
+        .sort((a, b) => {
+          if (b.bananas === a.bananas) {
+            return (
+              new Date(b.lastDayPlayed).getTime() -
+              new Date(a.lastDayPlayed).getTime()
+            );
+          }
+          return b.bananas - a.bananas;
+        })
+        .map((user, index) => ({
+          ...user,
+          rank: index + 1,
+        }));
+
       return {
         ...state,
-        data: action.payload,
-        filteredData: action.payload,
+        data: initialData,
+        filteredData: initialData,
       };
     case SEARCH_USER:
       const userName = action.payload.toLowerCase();
+
+      // If the user name is empty, return the full list of users
       if (userName === '') {
         return {
           ...state,
           filteredData: state.data,
         };
       }
+
+      // Find the user in the list of users
       const user = state.data.find(
         user => user.name.toLowerCase() === userName,
       );
+
+      // If the user does not exist, return the current state and show an alert
       if (!user) {
-        console.log(
+        Alert.alert(
           'This user name does not exist! Please specify an existing user name!',
         );
         return state;
       }
 
+      // If the user exists, find the top 10 users and check if the user is in the top 10
       let topUsers = [...state.data]
         .sort((a, b) => b.bananas - a.bananas)
         .slice(0, 10);
       const userInTop10 = topUsers.find(u => u.uid === user.uid);
 
+      // If the user is not in the top 10, add the user to the top 10 list
       if (!userInTop10) {
         topUsers = topUsers.slice(0, 9);
         topUsers.push({
           ...user,
-          rank: state.data.findIndex(u => u.uid === user.uid) + 1,
-        } as typeof user & {rank: number});
+        });
       }
-
-      topUsers = topUsers.map((user, index) => ({...user, rank: index + 1}));
 
       return {
         ...state,

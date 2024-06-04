@@ -1,6 +1,6 @@
 export type LeaderBoardUser = {
   bananas: number;
-  lastDayPlayed: string;
+  lastDayPlayed: Date;
   longestStreak: number;
   name: string;
   stars: number;
