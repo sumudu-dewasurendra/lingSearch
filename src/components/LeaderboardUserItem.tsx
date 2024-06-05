@@ -1,5 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet, Text, View} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import {LeaderBoardUser} from '../types/commonTypes';
 import {COLORS} from '../theme/colors';
 import {addMedalToRank} from '../utils/commonFunctions';
@@ -20,30 +21,28 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 5,
-    borderWidth: 2,
-    borderRadius: 5,
+    borderRadius: 10,
   },
   nameContainer: {
     width: '65%',
     height: 60,
     justifyContent: 'center',
     alignItems: 'flex-start',
-    padding: 5,
+    padding: 10,
   },
   bananasContainer: {
     width: '35%',
     height: 60,
     justifyContent: 'center',
     alignItems: 'flex-end',
-    padding: 5,
+    padding: 10,
   },
   rightInnerContainer: {
     width: '80%',
     height: 60,
     flexDirection: 'row',
     alignItems: 'center',
-    borderWidth: 2,
-    borderRadius: 5,
+    borderRadius: 10,
   },
   medalText: {
     fontSize: 25,
@@ -52,6 +51,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+const gradientStartCoodinates = {x: 0.0, y: 0.0};
+const gradientEndCoodinates = {x: 1.0, y: 1.0};
 
 type LeaderboardUserItemProps = {
   user: LeaderBoardUser;
@@ -67,19 +69,25 @@ const LeaderboardUserItem = ({
 }: LeaderboardUserItemProps) => {
   const backgroundColor =
     user.name.toLowerCase() === userName.toLowerCase()
-      ? COLORS.USER_ITEM_SELECTED_BACKGROUND_COLOR
-      : COLORS.MAIN_BACKGROUND_COLOR;
+      ? COLORS.USER_ITEM_GARADIENT_BACKGROUND_COLOR_SELECTED
+      : COLORS.USER_ITEM_GARADIENT_BACKGROUND_COLOR;
   return (
     <TouchableOpacity
       style={styles.mainWrapper}
       onPress={() => onPressUser(user)}>
-      <View style={{...styles.rankContainer, backgroundColor: backgroundColor}}>
+      <LinearGradient
+        colors={backgroundColor}
+        start={gradientStartCoodinates}
+        end={gradientEndCoodinates}
+        style={{...styles.rankContainer}}>
         <Text style={styles.text}>#{user.rank}</Text>
-      </View>
-      <View
+      </LinearGradient>
+      <LinearGradient
+        colors={backgroundColor}
+        start={gradientStartCoodinates}
+        end={gradientEndCoodinates}
         style={{
           ...styles.rightInnerContainer,
-          backgroundColor: backgroundColor,
         }}>
         <View style={styles.nameContainer}>
           <Text style={styles.text}>{user.name}</Text>
@@ -90,7 +98,7 @@ const LeaderboardUserItem = ({
             {user.bananas}
           </Text>
         </View>
-      </View>
+      </LinearGradient>
     </TouchableOpacity>
   );
 };

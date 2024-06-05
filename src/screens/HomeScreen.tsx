@@ -21,12 +21,18 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 20,
+    alignSelf: 'flex-start',
   },
   searchInputHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 10,
+  },
+  searchButton: {
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+    backgroundColor: COLORS.BUTTON_COLOR_DARK,
   },
 });
 
@@ -64,24 +70,20 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.mainWrapper}>
-      <Text style={styles.title}>LEADERBOARD</Text>
+      <Text style={styles.title}>Leaderboard</Text>
       <SearchInputHeader
         searchText={searchText}
         onChangeSearchText={setSearchText}
         searchButtonLabel="Search"
         onPresSearchButton={searchUserFromLeaderBoard}
-        searchButtonHeight={40}
-        searchButtonWidth={70}
         searchbuttonBorderRadius={30}
-        sortButtonLabel={sortAlphabetically ? '⬆️A' : '⬇️A'}
-        onPressSortButton={() =>
-          setSortAlphabetically(!sortAlphabeticallyEnabled)
-        }
-        sortButtonHeight={40}
-        sortButtonWidth={40}
-        sortButtonBorderRadius={5}
+        searchButtonWrapperStyles={styles.searchButton}
+        searchTextColor={COLORS.TEXT_COLOR_WHITE}
       />
-      <LeaderBoardTitleHeader />
+      <LeaderBoardTitleHeader
+        sortAlphabetically={sortAlphabetically}
+        onPressName={() => setSortAlphabetically(!sortAlphabeticallyEnabled)}
+      />
       <FlatList
         data={filteredData}
         keyExtractor={item => item.uid}
@@ -92,7 +94,7 @@ const HomeScreen = () => {
           <LeaderboardUserItem
             userName={searchText}
             user={item}
-            onPressUser={() => {}}
+            onPressUser={() => {}} // TODO: Add navigation to user profile
           />
         )}
       />

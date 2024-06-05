@@ -21,11 +21,8 @@ type SearchInputHeaderProps = {
   searchButtonWidth?: number;
   searchButtonHeight?: number;
   searchbuttonBorderRadius?: number;
-  sortButtonLabel: string;
-  onPressSortButton: () => void;
-  sortButtonWidth?: number;
-  sortButtonHeight?: number;
-  sortButtonBorderRadius?: number;
+  searchButtonWrapperStyles: {[key: string]: any};
+  searchTextColor?: string;
 };
 
 const SearchInputHeader = ({
@@ -33,14 +30,9 @@ const SearchInputHeader = ({
   onChangeSearchText,
   searchButtonLabel,
   onPresSearchButton,
-  searchButtonWidth,
-  searchButtonHeight,
   searchbuttonBorderRadius,
-  sortButtonLabel,
-  onPressSortButton,
-  sortButtonWidth,
-  sortButtonHeight,
-  sortButtonBorderRadius,
+  searchButtonWrapperStyles,
+  searchTextColor,
 }: SearchInputHeaderProps) => {
   return (
     <View style={styles.searchInputHeader}>
@@ -51,16 +43,9 @@ const SearchInputHeader = ({
       <Button
         label={searchButtonLabel}
         onPressButton={onPresSearchButton}
-        width={searchButtonWidth}
-        height={searchButtonHeight}
         borderRadius={searchbuttonBorderRadius}
-      />
-      <Button
-        label={sortButtonLabel}
-        onPressButton={onPressSortButton}
-        width={sortButtonWidth}
-        height={sortButtonHeight}
-        borderRadius={sortButtonBorderRadius}
+        wrapperStyles={searchButtonWrapperStyles}
+        labelColor={searchTextColor}
       />
     </View>
   );
