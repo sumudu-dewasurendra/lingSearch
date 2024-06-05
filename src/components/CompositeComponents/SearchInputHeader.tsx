@@ -5,7 +5,7 @@ import Button from '../Button';
 
 const styles = StyleSheet.create({
   searchInputHeader: {
-    width: 350,
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

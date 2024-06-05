@@ -3,17 +3,18 @@ import {View, Text, FlatList, StyleSheet} from 'react-native';
 import {COLORS} from '../theme/colors';
 import SearchInputHeader from '../components/CompositeComponents/SearchInputHeader';
 import LeaderboardUserItem from '../components/LeaderboardUserItem';
+import LeaderBoardTitleHeader from '../components/LeaderBoardTitleHeader';
 import {useDispatch, useSelector} from 'react-redux';
 import {searchUser, setData, sortUsers} from '../redux/actions';
 import leaderBoardData from '../data/leaderboard.json';
 
 const styles = StyleSheet.create({
   mainWrapper: {
-    backgroundColor: COLORS.BACKGROUND_COLOR,
+    backgroundColor: COLORS.MAIN_BACKGROUND_COLOR,
     flex: 1,
     alignItems: 'center',
     paddingTop: 70,
-    padding: 10,
+    padding: 20,
     paddingBottom: 30,
   },
   title: {
@@ -63,7 +64,7 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.mainWrapper}>
-      <Text style={styles.title}>Leader Board</Text>
+      <Text style={styles.title}>LEADERBOARD</Text>
       <SearchInputHeader
         searchText={searchText}
         onChangeSearchText={setSearchText}
@@ -72,7 +73,7 @@ const HomeScreen = () => {
         searchButtonHeight={40}
         searchButtonWidth={70}
         searchbuttonBorderRadius={30}
-        sortButtonLabel={sortAlphabetically ? 'Sort' : 'Unsort'}
+        sortButtonLabel={sortAlphabetically ? '⬆️A' : '⬇️A'}
         onPressSortButton={() =>
           setSortAlphabetically(!sortAlphabeticallyEnabled)
         }
@@ -80,6 +81,7 @@ const HomeScreen = () => {
         sortButtonWidth={40}
         sortButtonBorderRadius={5}
       />
+      <LeaderBoardTitleHeader />
       <FlatList
         data={filteredData}
         keyExtractor={item => item.uid}
@@ -87,7 +89,11 @@ const HomeScreen = () => {
         showsVerticalScrollIndicator={false}
         initialNumToRender={20}
         renderItem={({item}) => (
-          <LeaderboardUserItem user={item} onPressUser={() => {}} />
+          <LeaderboardUserItem
+            userName={searchText}
+            user={item}
+            onPressUser={() => {}}
+          />
         )}
       />
     </View>
