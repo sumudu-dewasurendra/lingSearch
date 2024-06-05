@@ -20,6 +20,12 @@ type SearchInputHeaderProps = {
   onPresSearchButton: () => void;
   searchButtonWidth?: number;
   searchButtonHeight?: number;
+  searchbuttonBorderRadius?: number;
+  sortButtonLabel: string;
+  onPressSortButton: () => void;
+  sortButtonWidth?: number;
+  sortButtonHeight?: number;
+  sortButtonBorderRadius?: number;
 };
 
 const SearchInputHeader = ({
@@ -29,6 +35,12 @@ const SearchInputHeader = ({
   onPresSearchButton,
   searchButtonWidth,
   searchButtonHeight,
+  searchbuttonBorderRadius,
+  sortButtonLabel,
+  onPressSortButton,
+  sortButtonWidth,
+  sortButtonHeight,
+  sortButtonBorderRadius,
 }: SearchInputHeaderProps) => {
   return (
     <View style={styles.searchInputHeader}>
@@ -41,6 +53,14 @@ const SearchInputHeader = ({
         onPressButton={onPresSearchButton}
         width={searchButtonWidth}
         height={searchButtonHeight}
+        borderRadius={searchbuttonBorderRadius}
+      />
+      <Button
+        label={sortButtonLabel}
+        onPressButton={onPressSortButton}
+        width={sortButtonWidth}
+        height={sortButtonHeight}
+        borderRadius={sortButtonBorderRadius}
       />
     </View>
   );

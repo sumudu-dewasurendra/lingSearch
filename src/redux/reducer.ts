@@ -1,4 +1,4 @@
-import {SET_FILTER, SET_DATA, SEARCH_USER} from './actions';
+import {SET_DATA, SEARCH_USER, SORT_USERS} from './actions';
 import {LeaderBoardUser} from '../types/commonTypes';
 import {Alert} from 'react-native';
 
@@ -10,20 +10,11 @@ type ActionProps = {
 const initialState = {
   data: [] as LeaderBoardUser[],
   filteredData: [] as LeaderBoardUser[],
-  filter: '',
+  sortAlphabetically: false,
 };
 
 const rootReducer = (state = initialState, action: ActionProps) => {
   switch (action.type) {
-    case SET_FILTER:
-      const filteredData = state.data.filter(item =>
-        item.name.toLowerCase().includes(action.payload.toLowerCase()),
-      );
-      return {
-        ...state,
-        filter: action.payload,
-        filteredData: filteredData,
-      };
     case SET_DATA:
       const dataArray: LeaderBoardUser[] = Object.values(action.payload);
 
@@ -68,7 +59,7 @@ const rootReducer = (state = initialState, action: ActionProps) => {
       // If the user does not exist, return the current state and show an alert
       if (!user) {
         Alert.alert(
-          'This user name does not exist! Please specify an existing user name!',
+          'This user name does not exist! Please enter an existing user name!',
         );
         return state;
       }
@@ -91,6 +82,33 @@ const rootReducer = (state = initialState, action: ActionProps) => {
         ...state,
         filteredData: topUsers,
       };
+    case SORT_USERS:
+      const sortAlphabetically = action.payload;
+      if (sortAlphabetically) {
+        const sortedData = [...state.filteredData].sort((a, b) =>
+          a.name.localeCompare(b.name),
+        );
+        return {
+          ...state,
+          filteredData: sortedData,
+          sortAlphabetically: sortAlphabetically,
+        };
+      } else {
+        const unSortedData = [...state.filteredData].sort((a, b) => {
+          if (b.bananas === a.bananas) {
+            return (
+              new Date(b.lastDayPlayed).getTime() -
+              new Date(a.lastDayPlayed).getTime()
+            );
+          }
+          return b.bananas - a.bananas;
+        });
+        return {
+          ...state,
+          filteredData: unSortedData,
+          sortAlphabetically: sortAlphabetically,
+        };
+      }
     default:
       return state;
   }
