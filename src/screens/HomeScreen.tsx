@@ -3,7 +3,7 @@ import {View, Text, FlatList, StyleSheet} from 'react-native';
 import {COLORS} from '../theme/colors';
 import SearchInputHeader from '../components/CompositeComponents/SearchInputHeader';
 import LeaderboardUserItem from '../components/LeaderboardUserItem';
-import LeaderBoardTitleHeader from '../components/LeaderBoardTitleHeader';
+import LeaderBoardTitleHeader from '../components/CompositeComponents/LeaderBoardTitleHeader';
 import {useDispatch, useSelector} from 'react-redux';
 import {searchUser, setData, sortUsers} from '../redux/actions';
 import leaderBoardData from '../data/leaderboard.json';

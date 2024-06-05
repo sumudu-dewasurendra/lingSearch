@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import Button from './Button';
-import {COLORS} from '../theme/colors';
+import Button from '../Button';
+import {COLORS} from '../../theme/colors';
 
 const styles = StyleSheet.create({
   mainWrapper: {
