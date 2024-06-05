@@ -29,10 +29,10 @@ React Native, Redux, React Navigation, React Native Linear Gradient
 
 ## Screenshots
 <p align="center">
-  <img src="/screenShots/ss1.png" height="200">
-  <img src="/screenShots/ss2.png" height="200">
-  <img src="/screenShots/ss3.png" height="200">
-  <img src="/screenShots/ss4.png" height="200">
+  <img src="/screenShots/ss1.png" height="300">
+  <img src="/screenShots/ss2.png" height="300">
+  <img src="/screenShots/ss3.png" height="300">
+  <img src="/screenShots/ss4.png" height="300">
 </p>
 
 
