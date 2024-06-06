@@ -17,8 +17,4 @@ describe('store', () => {
       sortAlphabetically: false,
     });
   });
-
-  // it('should update state correctly when actions are dispatched', () => {
-  //   // Add your test logic here
-  // });
 });

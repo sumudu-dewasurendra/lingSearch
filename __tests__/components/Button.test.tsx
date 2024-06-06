@@ -3,7 +3,7 @@ import {create} from 'react-test-renderer';
 import Button from '../../src/components/Button';
 import {expect, test} from '@jest/globals';
 
-test('renders correctly', () => {
+test('renders Button component correctly', () => {
   const tree = create(
     <Button
       label="Button"

@@ -78,7 +78,7 @@ const HomeScreen = () => {
         onPresSearchButton={searchUserFromLeaderBoard}
         searchbuttonBorderRadius={30}
         searchButtonWrapperStyles={styles.searchButton}
-        searchTextColor={COLORS.TEXT_COLOR_WHITE}
+        searchButtonTextColor={COLORS.TEXT_COLOR_WHITE}
       />
       <LeaderBoardTitleHeader
         sortAlphabetically={sortAlphabetically}

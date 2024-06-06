@@ -22,7 +22,7 @@ type SearchInputHeaderProps = {
   searchButtonHeight?: number;
   searchbuttonBorderRadius?: number;
   searchButtonWrapperStyles: {[key: string]: any};
-  searchTextColor?: string;
+  searchButtonTextColor?: string;
 };
 
 const SearchInputHeader = ({
@@ -32,7 +32,7 @@ const SearchInputHeader = ({
   onPresSearchButton,
   searchbuttonBorderRadius,
   searchButtonWrapperStyles,
-  searchTextColor,
+  searchButtonTextColor,
 }: SearchInputHeaderProps) => {
   return (
     <View style={styles.searchInputHeader}>
@@ -45,7 +45,7 @@ const SearchInputHeader = ({
         onPressButton={onPresSearchButton}
         borderRadius={searchbuttonBorderRadius}
         wrapperStyles={searchButtonWrapperStyles}
-        labelColor={searchTextColor}
+        labelColor={searchButtonTextColor}
       />
     </View>
   );

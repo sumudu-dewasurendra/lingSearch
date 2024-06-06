@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders LeaderBoardTitleHeader component correctly 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "height": 65,
+      "justifyContent": "space-between",
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "height": 60,
+        "justifyContent": "center",
+        "padding": 5,
+        "width": 60,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "fontSize": 15,
+          "fontWeight": "bold",
+        }
+      }
+    >
+      Rank
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "height": 60,
+        "width": "80%",
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "height": 60,
+          "justifyContent": "center",
+          "padding": 5,
+          "width": "60%",
+        }
+      }
+    >
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "alignItems": "center",
+            "borderColor": "#c5c5af",
+            "borderRadius": undefined,
+            "borderWidth": 0,
+            "flexDirection": "row",
+            "height": undefined,
+            "justifyContent": "center",
+            "opacity": 1,
+            "padding": 0,
+            "width": undefined,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "#000000",
+              "fontSize": 15,
+              "fontWeight": "700",
+              "letterSpacing": 0.5,
+            }
+          }
+        >
+          Name ⬇️
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "alignItems": "flex-end",
+          "height": 60,
+          "justifyContent": "center",
+          "padding": 5,
+          "width": "40%",
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "fontSize": 15,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Bananas🍌
+      </Text>
+    </View>
+  </View>
+</View>
+`;
