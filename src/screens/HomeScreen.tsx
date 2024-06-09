@@ -63,7 +63,6 @@ const HomeScreen = () => {
   }, [dispatch]);
 
   const filteredData = useSelector((state: ReduxState) => state.filteredData);
-  console.log('filteredData', filteredData);
   const sortAlphabeticallyEnabled = useSelector(
     (state: ReduxState) => state.sortAlphabetically,
   );
