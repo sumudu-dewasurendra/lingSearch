@@ -1,5 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, FlatList, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
 import {COLORS} from '../theme/colors';
 import SearchInputHeader from '../components/CompositeComponents/SearchInputHeader';
 import LeaderboardUserItem from '../components/LeaderboardUserItem';
@@ -70,36 +77,40 @@ const HomeScreen = () => {
   }
 
   return (
-    <View style={styles.mainWrapper}>
-      <Text style={styles.title}>Leaderboard</Text>
-      <SearchInputHeader
-        searchText={searchText}
-        onChangeSearchText={setSearchText}
-        searchButtonLabel="Search"
-        onPresSearchButton={searchUserFromLeaderBoard}
-        searchbuttonBorderRadius={30}
-        searchButtonWrapperStyles={styles.searchButton}
-        searchButtonTextColor={COLORS.TEXT_COLOR_WHITE}
-      />
-      <LeaderBoardTitleHeader
-        sortAlphabetically={sortAlphabetically}
-        onPressName={() => setSortAlphabetically(!sortAlphabeticallyEnabled)}
-      />
-      <FlatList
-        data={filteredData}
-        keyExtractor={item => item.uid}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        initialNumToRender={20}
-        renderItem={({item}) => (
-          <LeaderboardUserItem
-            userName={filter}
-            user={item}
-            onPressUser={() => {}} // TODO: Add navigation to user profile
-          />
-        )}
-      />
-    </View>
+    <TouchableWithoutFeedback
+      onPress={() => Keyboard.dismiss()}
+      accessible={false}>
+      <View style={styles.mainWrapper}>
+        <Text style={styles.title}>Leaderboard</Text>
+        <SearchInputHeader
+          searchText={searchText}
+          onChangeSearchText={setSearchText}
+          searchButtonLabel="Search"
+          onPresSearchButton={searchUserFromLeaderBoard}
+          searchbuttonBorderRadius={30}
+          searchButtonWrapperStyles={styles.searchButton}
+          searchButtonTextColor={COLORS.TEXT_COLOR_WHITE}
+        />
+        <LeaderBoardTitleHeader
+          sortAlphabetically={sortAlphabetically}
+          onPressName={() => setSortAlphabetically(!sortAlphabeticallyEnabled)}
+        />
+        <FlatList
+          data={filteredData}
+          keyExtractor={item => item.uid}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          initialNumToRender={20}
+          renderItem={({item}) => (
+            <LeaderboardUserItem
+              userName={filter}
+              user={item}
+              onPressUser={() => {}} // TODO: Add navigation to user profile
+            />
+          )}
+        />
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
