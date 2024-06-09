@@ -51,20 +51,20 @@ const rootReducer = (state = initialState, action: ActionProps) => {
         };
       }
 
-      // Find the user in the list of users
-      const user = state.data.find(
-        user => user.name.toLowerCase() === userName,
+      // Find the users that match the search criteria
+      const users = state.data.filter(user =>
+        user.name.toLowerCase().includes(userName.toLowerCase()),
       );
 
-      // If the user does not exist, return the current state and show an alert
-      if (!user) {
+      // If the users does not exist, return the current state and show an alert
+      if (!users || users.length === 0) {
         Alert.alert(
-          'This user name does not exist! Please enter an existing user name!',
+          'This user name does not exist! Please specify an existing user name!',
         );
         return state;
       }
 
-      const topUsers = addSearchedUserToTopUsers([...state.data], user);
+      const topUsers = addSearchedUserToTopUsers([...state.data], users);
 
       return {
         ...state,

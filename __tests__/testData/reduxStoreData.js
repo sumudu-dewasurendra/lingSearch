@@ -8904,7 +8904,7 @@ export const sortedLeaderboardConvertedData = [
   },
 ];
 
-export const leaderboardConvertedFilterData = [
+export const leaderboardConvertedFilterData1 = [
   {
     bananas: 36750,
     lastDayPlayed: '2018-07-21',
@@ -8996,6 +8996,49 @@ export const leaderboardConvertedFilterData = [
     uid: 'zDHhDho9h5fTDntQhyEg66RMvqK2',
   },
   {
+    bananas: 4600,
+    lastDayPlayed: '2018-04-18',
+    longestStreak: 4,
+    name: 'Ivy',
+    rank: 17,
+    stars: 21,
+    subscribed: false,
+    uid: 'zycLGDOMWLZLyjGrc98TdumJHl32',
+  },
+];
+
+export const leaderboardConvertedFilterData2 = [
+  {
+    bananas: 1750,
+    lastDayPlayed: '2018-08-18',
+    longestStreak: 1,
+    name: 'Danuja Boteju',
+    rank: 55,
+    stars: 11,
+    subscribed: false,
+    uid: 'z0V6TdKY9XhIrfA4sJSLtRiwJ8p1',
+  },
+  {
+    bananas: 750,
+    lastDayPlayed: '2018-08-22',
+    longestStreak: 1,
+    name: 'Angella Belladhita Karoline',
+    rank: 103,
+    stars: 7,
+    subscribed: false,
+    uid: 'z4apUshNhCb5FkLpmRKzjk3sePs1',
+  },
+  {
+    bananas: 350,
+    lastDayPlayed: '2018-08-10',
+    longestStreak: 1,
+    name: "Ja'kayla Baker",
+    rank: 151,
+    stars: 5,
+    subscribed: false,
+    uid: 'zaOFZh3nRsPYGn9mz2OousEtlf92',
+  },
+  {
     bananas: 200,
     lastDayPlayed: '2018-09-14',
     longestStreak: 1,
@@ -9004,6 +9047,16 @@ export const leaderboardConvertedFilterData = [
     stars: 6,
     subscribed: false,
     uid: 'zMtWeaaEQjZL5IN8PrrcgAmPXVG3',
+  },
+  {
+    bananas: 0,
+    lastDayPlayed: '2017-11-01',
+    longestStreak: 0,
+    name: 'Rania badar',
+    rank: 289,
+    stars: 5,
+    subscribed: false,
+    uid: 'z7IbNBFh5FZ7wiIMHETRpfimMzj1',
   },
 ];
 

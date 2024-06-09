@@ -10,7 +10,8 @@ import {
 import leaderboardData from '../../src/data/leaderboard.json';
 import {
   leaderboardConvertedData,
-  leaderboardConvertedFilterData,
+  leaderboardConvertedFilterData1,
+  leaderboardConvertedFilterData2,
   sortedLeaderboardConvertedData,
 } from '../testData/reduxStoreData';
 
@@ -40,7 +41,14 @@ describe('store', () => {
     store.dispatch(searchUser('A B'));
     const newState = store.getState();
 
-    expect(newState.filteredData).toEqual(leaderboardConvertedFilterData);
+    expect(newState.filteredData).toEqual(leaderboardConvertedFilterData2);
+  });
+
+  it('should update state.filteredData correctly searchUser action dispatched (when search user name Ivy)', () => {
+    store.dispatch(searchUser('Ivy'));
+    const newState = store.getState();
+
+    expect(newState.filteredData).toEqual(leaderboardConvertedFilterData1);
   });
 
   it('should update state.filteredData correctly sortUsers action dispatched', () => {

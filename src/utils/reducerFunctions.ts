@@ -20,21 +20,32 @@ export function organizeDataAndAddRank(dataArray: LeaderBoardUser[]) {
 
 export function addSearchedUserToTopUsers(
   dataArray: LeaderBoardUser[],
-  user: LeaderBoardUser,
+  users: LeaderBoardUser[],
 ) {
-  // If the user exists, find the top 10 users and check if the user is in the top 10
-  let topUsers = dataArray.sort((a, b) => b.bananas - a.bananas).slice(0, 10);
-  const userInTop10 = topUsers.find(u => u.uid === user.uid);
+  let topUsers: LeaderBoardUser[] = [];
+  if (users.length > 1) {
+    topUsers = users;
+    return topUsers;
+  } else {
+    let usersNotInTop10: LeaderBoardUser[] = [];
 
-  // If the user is not in the top 10, add the user to the top 10 list
-  if (!userInTop10) {
-    topUsers = topUsers.slice(0, 9);
-    topUsers.push({
-      ...user,
+    // If the user exists, find the top 10 leaderboard users and check if the users is in the top 10
+    topUsers = dataArray.sort((a, b) => b.bananas - a.bananas).slice(0, 10);
+    users.forEach(user => {
+      const userInTop10 = topUsers.find(u => u.uid === user.uid);
+      if (!userInTop10) {
+        usersNotInTop10.push(user);
+      }
     });
-  }
 
-  return topUsers;
+    // If the filtered users is not in the top 10, add the user to the top 10 list
+    if (usersNotInTop10.length > 0) {
+      topUsers = topUsers.slice(0, 9);
+      topUsers = [...topUsers, ...usersNotInTop10];
+    }
+
+    return topUsers;
+  }
 }
 
 export function sortUsersByName(dataArray: LeaderBoardUser[]) {
