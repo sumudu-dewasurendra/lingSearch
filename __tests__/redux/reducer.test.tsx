@@ -7,7 +7,7 @@ import {
   leaderboardConvertedData,
   leaderboardConvertedFilterData,
   sortedLeaderboardConvertedData,
-} from '../../testData/reduxStoreData';
+} from '../testData/reduxStoreData';
 
 describe('store', () => {
   let store: Store;
