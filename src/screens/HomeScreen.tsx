@@ -47,6 +47,7 @@ const HomeScreen = () => {
   const sortAlphabeticallyEnabled = useSelector(
     (state: any) => state.sortAlphabetically,
   );
+  const filter = useSelector((state: any) => state.filter);
 
   const [sortAlphabetically, setSortAlphabetically] = useState<boolean>(
     sortAlphabeticallyEnabled,
@@ -92,7 +93,7 @@ const HomeScreen = () => {
         initialNumToRender={20}
         renderItem={({item}) => (
           <LeaderboardUserItem
-            userName={searchText}
+            userName={filter}
             user={item}
             onPressUser={() => {}} // TODO: Add navigation to user profile
           />

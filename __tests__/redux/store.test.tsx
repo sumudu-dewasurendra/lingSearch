@@ -15,6 +15,7 @@ describe('store', () => {
       data: [],
       filteredData: [],
       sortAlphabetically: false,
+      filter: '',
     });
   });
 });
