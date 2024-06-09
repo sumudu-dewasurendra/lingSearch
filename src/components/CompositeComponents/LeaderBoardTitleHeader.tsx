@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   rankContainer: {
-    width: 60,
+    width: 80,
     height: 60,
     justifyContent: 'center',
     alignItems: 'center',
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 15,
   },
-  nameButton: {
+  button: {
     padding: 0,
     borderWidth: 0,
   },
@@ -50,17 +50,26 @@ const styles = StyleSheet.create({
 
 type LeaderBoardTitleHeaderProps = {
   sortAlphabetically: boolean;
+  sortByRank: boolean;
   onPressName: () => void;
+  onPressRank: () => void;
 };
 
 const LeaderBoardTitleHeader = ({
   sortAlphabetically,
+  sortByRank,
   onPressName,
+  onPressRank,
 }: LeaderBoardTitleHeaderProps) => {
   return (
     <View style={styles.mainWrapper}>
       <View style={styles.rankContainer}>
-        <Text style={styles.text}>Rank</Text>
+        <Button
+          label={`Rank ${sortByRank ? '⬇️' : '⬆️'}`}
+          labelColor={COLORS.TEXT_COLOR_BLACK}
+          onPressButton={onPressRank}
+          wrapperStyles={styles.button}
+        />
       </View>
       <View style={styles.rightInnerContainer}>
         <View style={styles.nameContainer}>
@@ -68,7 +77,7 @@ const LeaderBoardTitleHeader = ({
             label={`Name ${sortAlphabetically ? '⬇️' : '⬆️'}`}
             labelColor={COLORS.TEXT_COLOR_BLACK}
             onPressButton={onPressName}
-            wrapperStyles={styles.nameButton}
+            wrapperStyles={styles.button}
           />
         </View>
         <View style={styles.bananasContainer}>

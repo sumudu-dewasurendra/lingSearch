@@ -4,15 +4,18 @@ import {expect, describe, beforeEach, it} from '@jest/globals';
 import {
   setData,
   searchUser,
-  sortUsers,
-  setAlphabeticallySort,
+  sortUsersByName,
+  sortUsersByRank,
+  setSortByName,
+  setSortByRank,
 } from '../../src/redux/actions';
 import leaderboardData from '../../src/data/leaderboard.json';
 import {
   leaderboardConvertedData,
   leaderboardConvertedFilterData1,
   leaderboardConvertedFilterData2,
-  sortedLeaderboardConvertedData,
+  sortedLeaderboardConvertedData1,
+  sortedLeaderboardConvertedData2,
 } from '../testData/reduxStoreData';
 
 describe('store', () => {
@@ -24,10 +27,9 @@ describe('store', () => {
   });
 
   it('should update state correctly when setData action dispatched', () => {
-    store.dispatch(setData(leaderboardData));
     const newState = store.getState();
 
-    expect(newState.filteredData).toEqual(leaderboardConvertedData);
+    expect(newState.data).toEqual(leaderboardConvertedData);
   });
 
   it('should update state.filteredData correctly searchUser action dispatched (when search user name "")', () => {
@@ -37,32 +39,47 @@ describe('store', () => {
     expect(newState.filteredData).toEqual(leaderboardConvertedData);
   });
 
-  it('should update state.filteredData correctly searchUser action dispatched (when search user name A B)', () => {
-    store.dispatch(searchUser('A B'));
-    const newState = store.getState();
-
-    expect(newState.filteredData).toEqual(leaderboardConvertedFilterData2);
-  });
-
-  it('should update state.filteredData correctly searchUser action dispatched (when search user name Ivy)', () => {
+  it('should update state.filteredData correctly searchUser action dispatched (when search user name Ivy, sortAlphabetically = false, sortByRank = false)', () => {
     store.dispatch(searchUser('Ivy'));
     const newState = store.getState();
 
     expect(newState.filteredData).toEqual(leaderboardConvertedFilterData1);
   });
 
-  it('should update state.filteredData correctly sortUsers action dispatched', () => {
-    store.dispatch(setAlphabeticallySort(true)); // First update redux state.sortAlphabetically to true
-    store.dispatch(sortUsers());
+  it('should update state.filteredData correctly searchUser action dispatched (when search user name A B, sortAlphabetically = false, sortByRank = false)', () => {
+    store.dispatch(searchUser('A B'));
     const newState = store.getState();
 
-    expect(newState.filteredData).toEqual(sortedLeaderboardConvertedData);
+    expect(newState.filteredData).toEqual(leaderboardConvertedFilterData2);
   });
 
-  it('should update state.sortAlphabetically correctly setAlphabeticallySort action dispatched (when sorted true)', () => {
-    store.dispatch(setAlphabeticallySort(true));
+  it('should update state.filteredData correctly setSortByName action dispatched', () => {
+    store.dispatch(setSortByName(true)); // First update redux state.sortAlphabetically to true
+    store.dispatch(sortUsersByName());
+    const newState = store.getState();
+
+    expect(newState.filteredData).toEqual(sortedLeaderboardConvertedData1);
+  });
+
+  it('should update state.filteredData correctly setSortByRank action dispatched', () => {
+    store.dispatch(setSortByRank(true)); // First update redux state.sortByRank to true
+    store.dispatch(sortUsersByRank());
+    const newState = store.getState();
+
+    expect(newState.filteredData).toEqual(sortedLeaderboardConvertedData2);
+  });
+
+  it('should update state.sortAlphabetically correctly setSortByName action dispatched (when sorted by name true)', () => {
+    store.dispatch(setSortByName(true));
     const newState = store.getState();
 
     expect(newState.sortAlphabetically).toEqual(true);
+  });
+
+  it('should update state.sortAlphabetically correctly setSortByRank action dispatched (when sorted by rank true)', () => {
+    store.dispatch(setSortByRank(true));
+    const newState = store.getState();
+
+    expect(newState.sortByRank).toEqual(true);
   });
 });

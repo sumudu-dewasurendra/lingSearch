@@ -1,8 +1,10 @@
 import {
   SET_DATA,
   SEARCH_USER,
-  SORT_USERS,
+  SORT_USERS_BY_NAME,
+  SET_SORT_BY_RANK,
   SET_ALPHABETICALLY_SORT,
+  SORT_USERS_BY_RANK,
 } from './actions';
 import {LeaderBoardUser, ReduxState} from '../types/commonTypes';
 import {Alert} from 'react-native';
@@ -10,6 +12,7 @@ import {
   organizeDataAndAddRank,
   addSearchedUserToTopUsers,
   sortUsersByName,
+  sortLowerstRankUsers,
   unSortUsers,
 } from '../utils/reducerFunctions';
 
@@ -22,6 +25,7 @@ const initialState: ReduxState = {
   data: [],
   filteredData: [],
   sortAlphabetically: false,
+  sortByRank: false,
   filter: '',
 };
 
@@ -78,7 +82,30 @@ const rootReducer = (state = initialState, action: ActionProps) => {
         ...state,
         sortAlphabetically: isSorted,
       };
-    case SORT_USERS:
+
+    case SET_SORT_BY_RANK:
+      const isSortedByRank = action.payload;
+      return {
+        ...state,
+        sortByRank: isSortedByRank,
+      };
+
+    case SORT_USERS_BY_RANK:
+      const sortByRank = state.sortByRank;
+      if (sortByRank) {
+        const sortedData = sortLowerstRankUsers([...state.filteredData]);
+        return {
+          ...state,
+          filteredData: sortedData,
+        };
+      } else {
+        const unSortedData = unSortUsers([...state.filteredData]);
+        return {
+          ...state,
+          filteredData: unSortedData,
+        };
+      }
+    case SORT_USERS_BY_NAME:
       const sortAlphabetically = state.sortAlphabetically;
       if (sortAlphabetically) {
         const sortedData = sortUsersByName([...state.filteredData]);

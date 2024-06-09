@@ -13,5 +13,6 @@ export type ReduxState = {
   data: LeaderBoardUser[];
   filteredData: LeaderBoardUser[];
   sortAlphabetically: boolean;
+  sortByRank: boolean;
   filter: string;
 };

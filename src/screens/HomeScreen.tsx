@@ -16,8 +16,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import {
   searchUser,
   setData,
-  sortUsers,
-  setAlphabeticallySort,
+  sortUsersByName,
+  sortUsersByRank,
+  setSortByName,
+  setSortByRank,
 } from '../redux/actions';
 import leaderBoardData from '../data/leaderboard.json';
 
@@ -61,8 +63,12 @@ const HomeScreen = () => {
   }, [dispatch]);
 
   const filteredData = useSelector((state: ReduxState) => state.filteredData);
+  console.log('filteredData', filteredData);
   const sortAlphabeticallyEnabled = useSelector(
     (state: ReduxState) => state.sortAlphabetically,
+  );
+  const sortByRankEnabled = useSelector(
+    (state: ReduxState) => state.sortByRank,
   );
   const filter = useSelector((state: ReduxState) => state.filter);
 
@@ -76,11 +82,19 @@ const HomeScreen = () => {
   }, [searchText, dispatch]);
 
   useEffect(() => {
-    dispatch(sortUsers());
+    dispatch(sortUsersByName());
   }, [sortAlphabeticallyEnabled, dispatch]);
 
-  function setSortAlphabetically(isSorted: boolean) {
-    dispatch(setAlphabeticallySort(isSorted));
+  useEffect(() => {
+    dispatch(sortUsersByRank());
+  }, [sortByRankEnabled, dispatch]);
+
+  function sortAlphabetically(isSorted: boolean) {
+    dispatch(setSortByName(isSorted));
+  }
+
+  function sortByRank(isSorted: boolean) {
+    dispatch(setSortByRank(isSorted));
   }
 
   function searchUserFromLeaderBoard() {
@@ -104,7 +118,9 @@ const HomeScreen = () => {
         />
         <MemorizedLeaderBoardTitleHeader
           sortAlphabetically={sortAlphabeticallyEnabled}
-          onPressName={() => setSortAlphabetically(!sortAlphabeticallyEnabled)}
+          onPressName={() => sortAlphabetically(!sortAlphabeticallyEnabled)}
+          sortByRank={sortByRankEnabled}
+          onPressRank={() => sortByRank(!sortByRankEnabled)}
         />
         <FlatList
           data={filteredData}

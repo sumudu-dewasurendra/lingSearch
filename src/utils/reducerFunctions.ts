@@ -2,7 +2,7 @@ import {LeaderBoardUser} from '../types/commonTypes';
 
 export function organizeDataAndAddRank(dataArray: LeaderBoardUser[]) {
   return dataArray
-    .filter((user: LeaderBoardUser) => user.name !== '')
+    .filter(user => user.name !== '')
     .sort((a, b) => {
       if (b.bananas === a.bananas) {
         return (
@@ -12,10 +12,15 @@ export function organizeDataAndAddRank(dataArray: LeaderBoardUser[]) {
       }
       return b.bananas - a.bananas;
     })
-    .map((user, index) => ({
-      ...user,
-      rank: index + 1,
-    }));
+    .reduce((acc: LeaderBoardUser[], user, index, sortedArray) => {
+      if (index === 0 || user.bananas !== sortedArray[index - 1].bananas) {
+        user.rank = index + 1;
+      } else {
+        user.rank = acc[index - 1].rank;
+      }
+      acc.push(user);
+      return acc;
+    }, []);
 }
 
 export function addSearchedUserToTopUsers(
@@ -50,6 +55,15 @@ export function addSearchedUserToTopUsers(
 
 export function sortUsersByName(dataArray: LeaderBoardUser[]) {
   return dataArray.sort((a, b) => a.name.localeCompare(b.name));
+}
+
+export function sortLowerstRankUsers(dataArray: LeaderBoardUser[]) {
+  return dataArray.sort((a, b) => {
+    if (b.bananas === a.bananas) {
+      return a.name.localeCompare(b.name);
+    }
+    return a.bananas - b.bananas;
+  });
 }
 
 export function unSortUsers(dataArray: LeaderBoardUser[]) {
