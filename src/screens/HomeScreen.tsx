@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, memo} from 'react';
 import {
   View,
   Text,
@@ -43,6 +43,10 @@ const styles = StyleSheet.create({
   },
 });
 
+const MemorizedSearchInputHeader = memo(SearchInputHeader);
+const MemorizedLeaderboardUserItem = memo(LeaderboardUserItem);
+const MemorizedLeaderBoardTitleHeader = memo(LeaderBoardTitleHeader);
+
 const HomeScreen = () => {
   const dispatch = useDispatch();
 
@@ -82,7 +86,7 @@ const HomeScreen = () => {
       accessible={false}>
       <View style={styles.mainWrapper}>
         <Text style={styles.title}>Leaderboard</Text>
-        <SearchInputHeader
+        <MemorizedSearchInputHeader
           searchText={searchText}
           onChangeSearchText={setSearchText}
           searchButtonLabel="Search"
@@ -91,7 +95,7 @@ const HomeScreen = () => {
           searchButtonWrapperStyles={styles.searchButton}
           searchButtonTextColor={COLORS.TEXT_COLOR_WHITE}
         />
-        <LeaderBoardTitleHeader
+        <MemorizedLeaderBoardTitleHeader
           sortAlphabetically={sortAlphabetically}
           onPressName={() => setSortAlphabetically(!sortAlphabeticallyEnabled)}
         />
@@ -102,7 +106,7 @@ const HomeScreen = () => {
           showsVerticalScrollIndicator={false}
           initialNumToRender={20}
           renderItem={({item}) => (
-            <LeaderboardUserItem
+            <MemorizedLeaderboardUserItem
               userName={filter}
               user={item}
               onPressUser={() => {}} // TODO: Add navigation to user profile
