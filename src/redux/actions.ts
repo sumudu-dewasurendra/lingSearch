@@ -1,6 +1,7 @@
 export const SET_DATA = 'SET_DATA';
 export const SEARCH_USER = 'SEARCH_USER';
 export const SORT_USERS = 'SORT_USERS';
+export const SET_ALPHABETICALLY_SORT = 'SET_ALPHABETICALLY_SORT';
 
 export const setData = (data: Object) => ({
   type: SET_DATA,
@@ -12,7 +13,11 @@ export const searchUser = (userName: string) => ({
   payload: userName,
 });
 
-export const sortUsers = (sortAlphabetically: boolean) => ({
+export const sortUsers = () => ({
   type: SORT_USERS,
-  payload: sortAlphabetically,
+});
+
+export const setAlphabeticallySort = (isSorted: boolean) => ({
+  type: SET_ALPHABETICALLY_SORT,
+  payload: isSorted,
 });

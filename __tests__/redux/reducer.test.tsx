@@ -1,7 +1,12 @@
 import {createStore, Store} from 'redux';
 import rootReducer from '../../src/redux/reducer';
 import {expect, describe, beforeEach, it} from '@jest/globals';
-import {setData, searchUser, sortUsers} from '../../src/redux/actions';
+import {
+  setData,
+  searchUser,
+  sortUsers,
+  setAlphabeticallySort,
+} from '../../src/redux/actions';
 import leaderboardData from '../../src/data/leaderboard.json';
 import {
   leaderboardConvertedData,
@@ -38,10 +43,18 @@ describe('store', () => {
     expect(newState.filteredData).toEqual(leaderboardConvertedFilterData);
   });
 
-  it('should update state.filteredData correctly sortUsers action dispatched (when sorted true)', () => {
-    store.dispatch(sortUsers(true));
+  it('should update state.filteredData correctly sortUsers action dispatched', () => {
+    store.dispatch(setAlphabeticallySort(true)); // First update redux state.sortAlphabetically to true
+    store.dispatch(sortUsers());
     const newState = store.getState();
 
     expect(newState.filteredData).toEqual(sortedLeaderboardConvertedData);
+  });
+
+  it('should update state.sortAlphabetically correctly setAlphabeticallySort action dispatched (when sorted true)', () => {
+    store.dispatch(setAlphabeticallySort(true));
+    const newState = store.getState();
+
+    expect(newState.sortAlphabetically).toEqual(true);
   });
 });

@@ -8,11 +8,17 @@ import {
   Keyboard,
 } from 'react-native';
 import {COLORS} from '../theme/colors';
+import {ReduxState} from '../types/commonTypes';
 import SearchInputHeader from '../components/CompositeComponents/SearchInputHeader';
 import LeaderboardUserItem from '../components/LeaderboardUserItem';
 import LeaderBoardTitleHeader from '../components/CompositeComponents/LeaderBoardTitleHeader';
 import {useDispatch, useSelector} from 'react-redux';
-import {searchUser, setData, sortUsers} from '../redux/actions';
+import {
+  searchUser,
+  setData,
+  sortUsers,
+  setAlphabeticallySort,
+} from '../redux/actions';
 import leaderBoardData from '../data/leaderboard.json';
 
 const styles = StyleSheet.create({
@@ -54,15 +60,12 @@ const HomeScreen = () => {
     dispatch(setData(leaderBoardData));
   }, [dispatch]);
 
-  const filteredData = useSelector((state: any) => state.filteredData);
+  const filteredData = useSelector((state: ReduxState) => state.filteredData);
   const sortAlphabeticallyEnabled = useSelector(
-    (state: any) => state.sortAlphabetically,
+    (state: ReduxState) => state.sortAlphabetically,
   );
-  const filter = useSelector((state: any) => state.filter);
+  const filter = useSelector((state: ReduxState) => state.filter);
 
-  const [sortAlphabetically, setSortAlphabetically] = useState<boolean>(
-    sortAlphabeticallyEnabled,
-  );
   const [searchText, setSearchText] = useState<string>('');
 
   // If the search text is empty, show all the users
@@ -73,8 +76,12 @@ const HomeScreen = () => {
   }, [searchText, dispatch]);
 
   useEffect(() => {
-    dispatch(sortUsers(sortAlphabetically));
-  }, [sortAlphabetically, dispatch]);
+    dispatch(sortUsers());
+  }, [sortAlphabeticallyEnabled, dispatch]);
+
+  function setSortAlphabetically(isSorted: boolean) {
+    dispatch(setAlphabeticallySort(isSorted));
+  }
 
   function searchUserFromLeaderBoard() {
     dispatch(searchUser(searchText));
@@ -96,7 +103,7 @@ const HomeScreen = () => {
           searchButtonTextColor={COLORS.TEXT_COLOR_WHITE}
         />
         <MemorizedLeaderBoardTitleHeader
-          sortAlphabetically={sortAlphabetically}
+          sortAlphabetically={sortAlphabeticallyEnabled}
           onPressName={() => setSortAlphabetically(!sortAlphabeticallyEnabled)}
         />
         <FlatList

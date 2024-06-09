@@ -8,3 +8,10 @@ export type LeaderBoardUser = {
   uid: string;
   rank?: number;
 };
+
+export type ReduxState = {
+  data: LeaderBoardUser[];
+  filteredData: LeaderBoardUser[];
+  sortAlphabetically: boolean;
+  filter: string;
+};
