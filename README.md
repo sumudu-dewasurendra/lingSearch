@@ -13,8 +13,10 @@
 ## Features
 
 - View leaderboard
-- Sort leaderboard alphabetically
+- Sort leaderboard by name
+- Sort leaderboard by rank
 - Search user by name
+- Fuzzy search (search user by partial name)
 
 
 ## Architecture and design
@@ -29,10 +31,10 @@ React Native, Redux, React Navigation, React Native Linear Gradient
 
 ## Screenshots
 <p align="center">
-  <img src="/screenShots/ss1.png" height="300">
-  <img src="/screenShots/ss2.png" height="300">
-  <img src="/screenShots/ss3.png" height="300">
-  <img src="/screenShots/ss4.png" height="300">
+  <img src="/screenShots/screenshot1.png" height="300">
+  <img src="/screenShots/screenshot2.png" height="300">
+  <img src="/screenShots/screenshot3.png" height="300">
+  <img src="/screenShots/screenshot4.png" height="300">
 </p>
 
 

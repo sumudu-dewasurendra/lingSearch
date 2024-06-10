@@ -13,6 +13,7 @@ export function organizeDataAndAddRank(dataArray: LeaderBoardUser[]) {
       return b.bananas - a.bananas;
     })
     .reduce((acc: LeaderBoardUser[], user, index, sortedArray) => {
+      // Add rank to each user
       if (index === 0 || user.bananas !== sortedArray[index - 1].bananas) {
         user.rank = index + 1;
       } else {

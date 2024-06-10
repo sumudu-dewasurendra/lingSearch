@@ -76,7 +76,7 @@ exports[`renders LeaderBoardTitleHeader component correctly 1`] = `
           }
         }
       >
-        Rank ⬆️
+        Rank 🔃
       </Text>
     </View>
   </View>
@@ -154,7 +154,7 @@ exports[`renders LeaderBoardTitleHeader component correctly 1`] = `
             }
           }
         >
-          Name ⬇️
+          Name 🔃
         </Text>
       </View>
     </View>

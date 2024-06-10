@@ -49,15 +49,11 @@ const styles = StyleSheet.create({
 });
 
 type LeaderBoardTitleHeaderProps = {
-  sortAlphabetically: boolean;
-  sortByRank: boolean;
   onPressName: () => void;
   onPressRank: () => void;
 };
 
 const LeaderBoardTitleHeader = ({
-  sortAlphabetically,
-  sortByRank,
   onPressName,
   onPressRank,
 }: LeaderBoardTitleHeaderProps) => {
@@ -65,7 +61,7 @@ const LeaderBoardTitleHeader = ({
     <View style={styles.mainWrapper}>
       <View style={styles.rankContainer}>
         <Button
-          label={`Rank ${sortByRank ? '⬇️' : '⬆️'}`}
+          label={'Rank 🔃'}
           labelColor={COLORS.TEXT_COLOR_BLACK}
           onPressButton={onPressRank}
           wrapperStyles={styles.button}
@@ -74,7 +70,7 @@ const LeaderBoardTitleHeader = ({
       <View style={styles.rightInnerContainer}>
         <View style={styles.nameContainer}>
           <Button
-            label={`Name ${sortAlphabetically ? '⬇️' : '⬆️'}`}
+            label={'Name 🔃'}
             labelColor={COLORS.TEXT_COLOR_BLACK}
             onPressButton={onPressName}
             wrapperStyles={styles.button}

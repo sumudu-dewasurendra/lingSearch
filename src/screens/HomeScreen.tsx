@@ -116,9 +116,7 @@ const HomeScreen = () => {
           searchButtonTextColor={COLORS.TEXT_COLOR_WHITE}
         />
         <MemorizedLeaderBoardTitleHeader
-          sortAlphabetically={sortAlphabeticallyEnabled}
           onPressName={() => sortAlphabetically(!sortAlphabeticallyEnabled)}
-          sortByRank={sortByRankEnabled}
           onPressRank={() => sortByRank(!sortByRankEnabled)}
         />
         <FlatList
